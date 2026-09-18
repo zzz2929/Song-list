@@ -1,0 +1,238 @@
+/* ============================================================
+   深夜录音棚 · 设计令牌(三层架构)
+   primitive(原始值) → semantic(语义) → component(组件映射)
+   换主题只需替换本文件的值,组件代码不允许出现裸色值
+   ============================================================ */
+
+/* ---------- Primitive 原始值 ---------- */
+:root {
+  /* 墨色阶(背景) */
+  --sl-ink-950: #0b0c10;
+  --sl-ink-900: #0f1014;
+  --sl-ink-850: #131419;
+  --sl-ink-800: #181a20;
+  --sl-ink-750: #1c1f26;
+  --sl-ink-700: #1f222b;
+  --sl-ink-600: #262a34;
+  --sl-ink-500: #2a2e3a;
+
+  /* 文字阶 */
+  --sl-white-100: #e8eaed;
+  --sl-white-300: #b8bdc7;
+  --sl-white-500: #7c828d;
+  --sl-white-700: #565b66;
+
+  /* 霓虹绿(品牌强调) */
+  --sl-green-300: #57e88f;
+  --sl-green-400: #35e075;
+  --sl-green-500: #1ed760;
+  --sl-green-600: #16b04e;
+  --sl-green-700: #0f8a3d;
+  --sl-green-tint: rgba(30, 215, 96, 0.12);
+
+  /* 功能色 */
+  --sl-red-500: #e5484d;
+  --sl-amber-500: #f5a524;
+  --sl-blue-500: #4c9ce8;
+
+  /* 字体 */
+  --sl-font-sans: 'Helvetica Neue', Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+}
+
+/* ---------- Semantic 语义 ---------- */
+:root {
+  --color-bg-page: var(--sl-ink-900);
+  --color-bg-panel: var(--sl-ink-800);
+  --color-bg-elevated: var(--sl-ink-700);
+  --color-bg-hover: var(--sl-ink-700);
+  --color-border: var(--sl-ink-600);
+  --color-border-subtle: #22252e;
+
+  --color-text-1: var(--sl-white-100);
+  --color-text-2: var(--sl-white-300);
+  --color-text-3: var(--sl-white-500);
+  --color-text-4: var(--sl-white-700);
+
+  --color-primary: var(--sl-green-500);
+  --color-primary-hover: var(--sl-green-400);
+  --color-primary-active: var(--sl-green-600);
+  --color-on-primary: #08130c;
+
+  --color-success: var(--sl-green-500);
+  --color-warning: var(--sl-amber-500);
+  --color-danger: var(--sl-red-500);
+  --color-info: var(--sl-blue-500);
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --shadow-panel: 0 1px 2px rgba(0, 0, 0, 0.35);
+  --font-sans: var(--sl-font-sans);
+}
+
+/* ---------- Component 组件层: Element Plus 暗色映射 ---------- */
+html.dark {
+  color-scheme: dark;
+
+  /* 品牌色(Element 的 light-N 是变亮档位,dark-2 是变暗档位) */
+  --el-color-primary: var(--color-primary);
+  --el-color-primary-light-3: var(--sl-green-400);
+  --el-color-primary-light-5: var(--sl-green-300);
+  --el-color-primary-light-7: rgba(30, 215, 96, 0.3);
+  --el-color-primary-light-8: rgba(30, 215, 96, 0.2);
+  --el-color-primary-light-9: var(--sl-green-tint);
+  --el-color-primary-dark-2: var(--sl-green-600);
+
+  --el-color-success: var(--color-success);
+  --el-color-warning: var(--color-warning);
+  --el-color-danger: var(--color-danger);
+  --el-color-error: var(--color-danger);
+  --el-color-info: var(--color-info);
+
+  /* 背景与浮层 */
+  --el-bg-color: var(--color-bg-panel);
+  --el-bg-color-page: var(--color-bg-page);
+  --el-bg-color-overlay: var(--sl-ink-700);
+  --el-fill-color: var(--sl-ink-700);
+  --el-fill-color-light: var(--sl-ink-750);
+  --el-fill-color-lighter: var(--sl-ink-850);
+  --el-fill-color-blank: var(--color-bg-panel);
+  --el-mask-color: rgba(5, 6, 8, 0.65);
+
+  /* 文字 */
+  --el-text-color-primary: var(--color-text-1);
+  --el-text-color-regular: var(--color-text-2);
+  --el-text-color-secondary: var(--color-text-3);
+  --el-text-color-placeholder: var(--color-text-4);
+  --el-text-color-disabled: var(--color-text-4);
+
+  /* 边框 */
+  --el-border-color: var(--color-border);
+  --el-border-color-light: var(--color-border-subtle);
+  --el-border-color-lighter: var(--sl-ink-850);
+  --el-border-color-extra-light: var(--sl-ink-850);
+
+  --el-font-family: var(--font-sans);
+}
+
+/* ---------- 组件微调 ---------- */
+
+/* 卡片: 面板底色 + 细描边 + 圆角 */
+.el-card {
+  --el-card-bg-color: var(--color-bg-panel);
+  --el-card-border-color: var(--color-border-subtle);
+  --el-card-border-radius: var(--radius-md);
+  box-shadow: var(--shadow-panel);
+}
+.el-card__header {
+  border-bottom-color: var(--color-border-subtle);
+}
+
+/* 主按钮: 荧光绿底 + 深色文字 */
+.el-button--primary {
+  --el-button-text-color: var(--color-on-primary);
+  --el-button-hover-text-color: var(--color-on-primary);
+  --el-button-active-text-color: var(--color-on-primary);
+  --el-button-hover-bg-color: var(--color-primary-hover);
+  --el-button-active-bg-color: var(--color-primary-active);
+  --el-button-hover-border-color: var(--color-primary-hover);
+  --el-button-active-border-color: var(--color-primary-active);
+  font-weight: 600;
+}
+.el-button--primary.is-link,
+.el-button--primary.is-text {
+  --el-button-text-color: var(--color-primary);
+  font-weight: 500;
+}
+
+/* 单选按钮组选中态沿用深色文字 */
+.el-radio-button__original-radio:checked + .el-radio-button__inner {
+  color: var(--color-on-primary);
+}
+
+/* 侧边菜单: 胶囊态 + 绿色指示条 */
+.el-menu {
+  border-right: none;
+}
+.el-menu-item {
+  height: 44px;
+  line-height: 44px;
+  margin: 4px 12px;
+  border-radius: var(--radius-sm);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+.el-menu-item:hover {
+  background-color: var(--color-bg-hover);
+}
+.el-menu-item.is-active {
+  background-color: var(--sl-green-tint);
+  color: var(--color-primary);
+  position: relative;
+}
+.el-menu-item.is-active::before {
+  content: '';
+  position: absolute;
+  left: -12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 18px;
+  border-radius: 0 2px 2px 0;
+  background: var(--color-primary);
+}
+
+/* 表格: 透明底融入卡片,行悬停浮起 */
+.el-table {
+  --el-table-bg-color: transparent;
+  --el-table-tr-bg-color: transparent;
+  --el-table-header-bg-color: transparent;
+  --el-table-header-text-color: var(--color-text-3);
+  --el-table-row-hover-bg-color: var(--color-bg-hover);
+  --el-table-border-color: var(--color-border-subtle);
+  font-size: 13px;
+}
+.el-table th.el-table__cell {
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.4px;
+}
+
+/* 弹窗与消息框 */
+.el-dialog {
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-lg);
+}
+.el-message-box {
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-md);
+}
+
+/* 分页 / 进度条 / 警告条融入暗色 */
+.el-pagination {
+  --el-pagination-bg-color: transparent;
+  --el-pagination-button-disabled-bg-color: transparent;
+}
+.el-alert--info {
+  --el-alert-bg-color: var(--sl-ink-750);
+}
+
+/* 滚动条 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--sl-ink-500);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3a3f4d;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::selection {
+  background: var(--sl-green-600);
+  color: #fff;
+}

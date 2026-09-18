@@ -1,0 +1,21 @@
+{
+  "name": "songlist-server",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "fixtures": "node scripts/make-fixtures.mjs",
+    "mock-subsonic": "node scripts/mock-subsonic.mjs",
+    "e2e": "node scripts/e2e.mjs"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "music-metadata": "^11.0.0",
+    "webdav": "^5.8.0"
+  }
+}

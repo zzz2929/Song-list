@@ -1,0 +1,13 @@
+services:
+  songlist:
+    build: .
+    image: songlist:latest
+    container_name: songlist
+    restart: unless-stopped
+    ports:
+      - "8866:8866"
+    environment:
+      - TZ=Asia/Shanghai
+    volumes:
+      - ./data:/app/data          # 数据库与同步配置
+      - /vol1/你的音乐目录:/music  # ← 改成你的音乐目录;多个目录就多写几行:/xxx:/music2

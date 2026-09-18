@@ -1,0 +1,22 @@
+html,
+body,
+#app {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--color-bg-page);
+  color: var(--color-text-1);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+.page-card {
+  margin-bottom: 16px;
+}
+
+.muted {
+  color: var(--color-text-3);
+  font-size: 12px;
+}

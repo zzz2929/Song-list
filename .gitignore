@@ -1,0 +1,6 @@
+node_modules/
+server/data/
+server/fixtures/
+server/static/
+*.log
+.DS_Store
