@@ -1,4 +1,5 @@
 <template>
+  <div>
   <el-row :gutter="16">
     <el-col :span="7">
       <el-card class="anim-in" shadow="never">
@@ -98,13 +99,13 @@
       </el-button>
     </template>
   </el-dialog>
+  </div>
 </template>
 
 <script setup>
 import { ref, computed, nextTick, onMounted } from 'vue';
 import { ElMessage, ElMessageBox } from 'element-plus';
 import { api, fmtDuration } from '../api.js';
-import { pageEnter } from '../composables/motion.js';
 
 const playlists = ref([]);
 const loading = ref(false);
@@ -284,12 +285,27 @@ onMounted(() => {
   border-radius: 6px;
   cursor: pointer;
   margin-bottom: 4px;
+  transition: background-color 0.18s ease, transform 0.12s ease;
+}
+.pl-item:active {
+  transform: scale(0.98);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .pl-item {
+    animation: rise-in 0.28s ease both;
+  }
+  .pl-item:nth-child(2) { animation-delay: 0.04s; }
+  .pl-item:nth-child(3) { animation-delay: 0.08s; }
+  .pl-item:nth-child(4) { animation-delay: 0.12s; }
+  .pl-item:nth-child(5) { animation-delay: 0.16s; }
+  .pl-item:nth-child(6) { animation-delay: 0.2s; }
+  .pl-item:nth-child(n + 7) { animation-delay: 0.24s; }
 }
 .pl-item:hover {
   background: var(--color-bg-hover);
 }
 .pl-item.active {
-  background: var(--sl-green-tint);
+  background: var(--color-primary-tint);
 }
 .pl-item.active .pl-name {
   color: var(--color-primary);

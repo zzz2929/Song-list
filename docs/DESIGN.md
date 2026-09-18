@@ -38,6 +38,7 @@
 
 - **零原生依赖**:SQLite 使用 Node 22 内置的 `node:sqlite`,无需 node-gyp,Docker 镜像可直接跑 x86_64 与 ARM64(飞牛两类机型都有)。
 - **适配器模式**:每个同步目标实现统一接口 `testConnection(cfg)` / `syncPlaylists(cfg, playlists, log)`,注册于 `sync/index.js`;前端据此渲染目标清单,未实现目标自动进入"规划中"列表。
+- **设置页与多主题**:连接配置等持久化配置集中在「设置」页(同步页只保留动作);主题由 `theme.js`(注册表/切换/持久化到 localStorage)+ `design/tokens.css`(每主题一组 `[data-theme]` 令牌,覆盖 primitive→semantic→Element 映射三层)实现,暗色主题额外挂 `html.dark` 启用 Element 暗色变量,切换即时生效。
 - **单向同步语义**:以本地歌单为基准推送到目标端。Subsonic 端同名歌单内容整体替换(幂等,可重复执行);WebDAV 端按歌单名写 `.m3u8`(覆盖)。
 
 ## 3. 数据模型

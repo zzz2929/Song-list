@@ -18,6 +18,9 @@
         <el-menu-item index="/sync">
           <el-icon><Upload /></el-icon><span>同步导出</span>
         </el-menu-item>
+        <el-menu-item index="/settings">
+          <el-icon><Setting /></el-icon><span>设置</span>
+        </el-menu-item>
       </el-menu>
       <div class="aside-foot">
         <span class="dot" :class="{ pulse: scanHint }"></span>{{ statsText }}
@@ -28,7 +31,9 @@
         <h1 class="title">{{ $route.meta.title }}</h1>
         <el-tag v-if="scanHint" type="warning" size="small" effect="dark">扫描中…</el-tag>
       </el-header>
-      <el-main><router-view /></el-main>
+      <el-main>
+        <router-view :key="$route.path" />
+      </el-main>
     </el-container>
   </el-container>
 </template>
@@ -63,7 +68,7 @@ onUnmounted(() => clearInterval(timer));
   height: 100%;
 }
 .aside {
-  background: var(--sl-ink-850);
+  background: var(--color-bg-sidebar);
   display: flex;
   flex-direction: column;
   border-right: 1px solid var(--color-border-subtle);
@@ -78,14 +83,14 @@ onUnmounted(() => clearInterval(timer));
   width: 30px;
   height: 30px;
   border-radius: 9px;
-  background: linear-gradient(135deg, var(--sl-green-400), var(--sl-green-600));
+  background: linear-gradient(135deg, var(--color-primary-hover), var(--color-primary-active));
   color: var(--color-on-primary);
   font-size: 17px;
   font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 0 14px rgba(30, 215, 96, 0.35);
+  box-shadow: 0 0 14px var(--glow-color);
 }
 .logo-text {
   color: var(--color-text-1);
@@ -116,8 +121,8 @@ onUnmounted(() => clearInterval(timer));
   animation: pulse 1.2s ease-in-out infinite;
 }
 @keyframes pulse {
-  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(30, 215, 96, 0.5); }
-  50% { opacity: 0.5; box-shadow: 0 0 0 5px rgba(30, 215, 96, 0); }
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 var(--color-primary-tint); }
+  50% { opacity: 0.5; box-shadow: 0 0 0 5px transparent; }
 }
 .header {
   background: var(--color-bg-page);

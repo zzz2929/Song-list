@@ -8,9 +8,10 @@ import './style.css';
 import * as Icons from '@element-plus/icons-vue';
 import App from './App.vue';
 import router from './router.js';
+import { applyTheme, currentTheme } from './theme.js';
 
-// 本应用为暗色主题,在挂载前启用 Element 暗色变量
-document.documentElement.classList.add('dark');
+// 挂载前应用主题(令牌 + Element 暗色变量)
+applyTheme(currentTheme());
 
 const app = createApp(App);
 app.use(ElementPlus, { locale: zhCn });

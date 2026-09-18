@@ -1,14 +1,23 @@
 <!doctype html>
-<html lang="zh-CN" class="dark">
+<html lang="zh-CN" data-theme="studio">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#0f1014" />
     <title>歌单管理</title>
-    <style>body { background: #0f1014; }</style>
   </head>
   <body>
     <div id="app"></div>
+    <script>
+      // 首屏前应用已保存的主题,避免闪白/闪黑
+      try {
+        var t = localStorage.getItem('sl.theme') || 'studio';
+        document.documentElement.dataset.theme = t;
+        if (t === 'studio' || t === 'galaxy') document.documentElement.classList.add('dark');
+        var bg = { studio: '#0f1014', galaxy: '#14162a', tech: '#f5f7fa', vinyl: '#faf9f7' }[t];
+        document.documentElement.style.background = bg;
+      } catch (e) {}
+    </script>
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>

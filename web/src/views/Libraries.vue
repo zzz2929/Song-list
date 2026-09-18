@@ -60,7 +60,6 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue';
 import { ElMessage, ElMessageBox } from 'element-plus';
 import { api } from '../api.js';
-import { pageEnter } from '../composables/motion.js';
 
 const libs = ref([]);
 const loading = ref(false);
@@ -142,7 +141,6 @@ async function remove(row) {
 
 onMounted(() => {
   reload();
-  pageEnter();
   timer = setInterval(loadScan, 2000);
 });
 onUnmounted(() => clearInterval(timer));

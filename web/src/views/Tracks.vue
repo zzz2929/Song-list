@@ -1,4 +1,5 @@
 <template>
+  <div>
   <el-card class="anim-in" shadow="never">
     <div style="margin-bottom: 12px; display: flex; gap: 12px; align-items: center">
       <el-input v-model="q" placeholder="搜索标题 / 歌手 / 专辑 / 文件名" clearable style="width: 320px" :prefix-icon="Search" />
@@ -29,7 +30,7 @@
       v-model:page-size="pageSize"
       :page-sizes="[20, 50, 100, 200]"
       @current-change="load"
-      @size-change="load"
+      @size-change="onSizeChange"
     />
   </el-card>
 
@@ -42,6 +43,7 @@
       <el-button type="primary" @click="doAdd">添加</el-button>
     </template>
   </el-dialog>
+  </div>
 </template>
 
 <script setup>
@@ -49,13 +51,12 @@ import { ref, onMounted, watch } from 'vue';
 import { ElMessage } from 'element-plus';
 import { Search } from '@element-plus/icons-vue';
 import { api, fmtDuration } from '../api.js';
-import { pageEnter } from '../composables/motion.js';
 
 const q = ref('');
 const rows = ref([]);
 const total = ref(0);
 const page = ref(1);
-const pageSize = ref(50);
+const pageSize = ref(Number(localStorage.getItem('sl.pageSize')) || 50);
 const loading = ref(false);
 const playlists = ref([]);
 const addVisible = ref(false);
@@ -84,6 +85,11 @@ watch(q, () => {
   timer = setTimeout(load, 300);
 });
 
+function onSizeChange() {
+  localStorage.setItem('sl.pageSize', String(pageSize.value));
+  load();
+}
+
 async function loadPlaylists() {
   try {
     playlists.value = await api.get('/playlists');
@@ -111,8 +117,5 @@ async function doAdd() {
   }
 }
 
-onMounted(() => {
-  load();
-  pageEnter();
-});
+onMounted(load);
 </script>

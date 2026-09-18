@@ -15,6 +15,7 @@
 | 批量建歌单 | 按专辑、专辑艺术家、演唱者、流派、年份五个维度勾选批量创建,支持命名模板 `{value}` |
 | 歌单管理 | 新建/重命名/删除/追加/移除/导出 |
 | 导出与同步 | M3U8 导出下载;WebDAV 推送 M3U8;Subsonic API 同步(兼容 Navidrome/Gonic/Airsonic,自动按标题+歌手匹配曲目并生成匹配报告) |
+| 设置 | 主题切换(深夜录音棚 / Midnight Galaxy / Tech Innovation / 黑胶暖调,存本机)、歌曲页默认分页、同步目标连接配置 |
 | 规划中 | 飞牛音乐(二期)、Jellyfin、Emby、Plex、群晖 Audio Station、带鱼音乐 |
 
 ## 快速开始(Docker,推荐在飞牛上使用)
